@@ -16,8 +16,7 @@
 title: Rajas Khokle
 email: rajaskhokle@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
-I love finding insights from the data by doing machine learning and modeling. I present the results in 
-a way which is both intresting and instructive.  
+I love finding insights from the data by doing machine learning and modeling. I present the results in such a way which is both intresting and instructive.  
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
