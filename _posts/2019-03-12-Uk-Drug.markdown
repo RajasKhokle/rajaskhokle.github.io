@@ -169,7 +169,7 @@ Now, is the time to call these functions to create a forecast for our chosen dru
     model,forecast = prophetmodel(ts,months)
 {% endhighlight %}
 
-The results are shown in figure below.
+The results are shown in figure below.Itcan be seen that the model coorectly forecasts the quarterly increase in the demand.
 ![Forecast](/assets/Forecast.png)
 
 
