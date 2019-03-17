@@ -1,0 +1,195 @@
+---
+layout: post
+title:  "Scalable and Automated Drug Demand Forecasting"
+date:   2019-03-12 12:19:28 +1100
+categories: DSI -5 Update
+---
+The National Health Services in the United Kingdom provides monthly data on the prescriptions given by the individual general practices in the United Kingdom. This dataset is available as csv files by released by month and can be downloaded from [https://digital.nhs.uk/data-and-information/publications/statistical/practice-level-prescribing-data](https://digital.nhs.uk/data-and-information/publications/statistical/practice-level-prescribing-data){:target="_blank"}. 
+
+It contains the number of prescriptions and quantity of each drug prescribed by an individual practice in UK in the given month. The data is available from October 2010 to December 2018. While there are 3093 different drugs and medical appliances that are used; their strength, dosage and formulation vary considerably from company to company giving a total of 38385 different and unique items in the dataset. There are on an average 10 million records for each month. Thus, for about 100 months, this goes to 1 billion records totaling to 1.4 TB of unpacked space. A good data pipeline is therefore required to handle such a large amount of data and prepare it for consumption by the machine learning models and visualizations. 
+
+<h1> <strong>First Look at data</strong> </h1>
+ 
+The dataset for each month comes with three files - 
+<ol>
+  <li>Transactions File: - Contains prescriptions made by different GPs in the UK.</li>
+  <li>Chemicals File: - A list of Checmical composition of drugs.</li>
+  <li>Addresses: - A list of address of the General Practices in UK.</li>
+</ol>
+
+Out of these, we need transaction and Address files for our data science project. It can be noted that these files seems to be the output of a normalized transaction database where each file is simply a table in a RDBMS system. An excellant tutorial for the normalization of relational database can be found [here.](https://www.tutorialspoint.com/dbms/database_normalization.htm){:target="_blank"}.
+
+Now let us look at the columns in the transactions file as shown in figure below.
+![Transaction File](/assets/Trans.png)
+
+There are 10 column which are described below. 
+<ol>
+  <li>SHA - Strategic Health Authority (SHA) code. </li>
+  <li>PCT - Primary Care Trust (PCT) code. </li>
+  <li>PRACTICE - This is code for the general practice. The accompanying address file gives the name and address of each practice indexed by this code. </li>
+  <li>BNFCODE - The code of the drug as given by British National Formulary.</li>
+  <li>BNFNAME - The name of the drug as given in British National Formulary.</li>
+  <li>ITEMS - The number of prescriptions of a specific drug given by that particular practice.</li>
+  <li>NIC - Net Ingredient Cost. </li>
+  <li>ACT COST - Actual cost of the drug to the National Health Service.</li>
+  <li>Quantity - The quantity of a drug dispensed is measured in units depending on the formulation of the product, which is given in the drug name. Quantities should not be added together across preparations because of different strengths and formulations.</li>
+  <li>PERIOD - This date relates to the month in which the prescriptions were dispensed. </li>
+</ol>
+
+ Out of these, SHA and PCT codes do not have any relation for our drug demand forecasting so they can be removed.  Digging a bit deeper in the BNF code structure [here](https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-glossary-of-terms){:target="_blank"}, it can be seen that BNFCODES are very useful as they are not random but are grouped in categories and subcategories. The [structure](https://ebmdatalab.net/prescribing-data-bnf-codes/){:target="_blank"} of BNFCODE is shown below. The first two letters give the primary category of the drug  next two give the subcategory and next two sub sub category. I leveraged this structure to separate and aggregate the drugs into different tables. This helps in managing the big 1 billion row database. ![BNFCODE](/assets/bnfcode.png). 
+ 
+
+<h1> <strong>Data Extraction, Transformation and Loading</strong> </h1>
+
+There are 21 groups of drugs and medical appliances as outlined by British Natural Formulary (BNF). They can be stored in 21 different tables. This preserves all the data; however, it makes querying the database faster since it need not scan through even the index of 1 billion records. An index is then created on BNFCODE. 
+
+The entire data flow is shown in the  data pipeline below.
+
+![Data Pipeline](/assets/Data_Pipeline.png)
+
+The whole process of loading the data from source files, seperation using BNFCODE, and storage in a postgresql database can be automated. The algorithm / Pseudocode can be developed as follows
+
+{% highlight markdown %}
+
+- Import Pandas and sqlalchemy
+- Create connection to the Postgresql database
+- create a list of filenames to be loaded from disk
+- For file in filenames:
+    - Load the file in pandas dataframe
+    - Drop the unnecessary columns
+    - Filter the rows by first two letters in the BNFCODE
+    - Add the data to respective tables in the database
+{% endhighlight %}
+
+The implementation of above algorithm in python can be accessed [here](https://github.com/RajasKhokle/UKDrug/blob/master/dbcreate_BNF_Seperation.py){:target="_blank"}.
+
+<h1> <strong>Diabetes Drugs</strong> </h1>
+
+For the purpose of this blog, let us look into a drug demand forecasting for diabetes related drugs. 
+![Diabetes](/assets/diabetes_treatment.png)
+
+There are two types of diabetes Type I and Type II and they are treated differntly. In Type I diabetes, body does not produce any insulin which is required for the metabolism of sugar. In type II diabetes, body produces it in insufficient quantities. Majority of people (90%) suffer with Type II diabetes. Metformin tablets is usually the first line of treatment for Type II diabetes. Conversly, insulin shots is the only way for treating Type I diabetes. However, this is not so straight forward. Type II diabetes is a progressive condition and may require insulin shots at later stages. 
+
+Further, there are two kinds of insulins - Humulin or human like and Lantus (a.k.a Glargine) which is a synthetic drug. Lantus is almost 70% more expensive than humulin. The insulin is administered using a injection pen. These pens can be refilled with cartridges as well. Thus, we now look at following 3 drugs (and 1 cartridge item):
+
+<ol>
+  <li>Metformin – First level of treatment that lowers the Blood Glucose level by affecting liver functions.</li>
+  <li>Insulin Humulin  </li>
+  <li>Insulin Lantus SoloStar</li>
+  <li>Ins Humulin Cartridge</li>
+</ol>
+<h1> <strong>Problem Formulation and Value Generation</strong> </h1>
+  The questions that can be asked now are:
+
+  <ol>
+  <li>Which drug out of three should be given more significance?</li>
+  <li>In what Quantity should these drugs be produced for next batch?</li>
+  <li>What will be the demand distribution (geographically) of these drugs in UK?</li>
+  </ol>
+
+  Each of these 3 questions pertain to 3 different level of people in a drug company. 
+  
+  <ul>
+    <li>The first question is usually asked by top-level managers and CEOs who decide the direction of the company. This also gives information about the market trends.</li>
+    <li> The second question is more important for the production and drug manufacturing teams. This will also help the finance team for forecasting their revenue. Further, the inventory mangement team can use this forecast information for planning their raw material purchase and storage.</li> 
+    <li>The third question is for the supply chain management team where they can optimize their distribution network to get the maximum revenue.</li> 
+    <li>Finally,the answers of all the these questions can be levereged by the marketing team for setting their goals and for finding suitable time for marketing campaigns.</li>
+    
+  </ul>
+  Essentially, this kind of demand forecasting affects the entire organization in one or other way.
+
+<h1> <strong>Exploratory Data Analysis </strong> </h1>
+Now, let us consider the total drug demand in the entire UK for the drugs under consideration.
+
+# Metformin
+The graph below shows the seasonality decompistion of the time series data of metformin. The data is decomposed into trend, seasonality and residual. The demand for metformin has been continuously increasing since 2010, however, in last two years, it is seen to be saturating. Further. There is 5 % seasonal and 5% random variation over the trend. When we look at the seasonality closely, it can be inferred that people tend to buy 3 months of stock at a time. Also, the demand spikes in the end of november. This may be because of the holiday season in December.
+
+# Insulin Humulin and Lantus
+
+A similar decomposition is done for Insulin Humulin and Insulin Lantus as shown figure below.
+![Insulin][/assets/Insulin.png]. It can be clearly senn that the Humulin use has been increasing steadily over a last decade while the use of Lantus increased rapidly till 2013 and then plateaued and now shows a negative trend.
+The use of Lantus is almost 2.5 times to that of Humulin.
+
+
+# Insulin Lantus
+
+# Humulin Refill Cartridges
+![Metformin](/assets/Metformin.png)
+
+
+
+
+
+<h1> <strong>Data Modelling - Seasonality Decomposition </strong> </h1>
+Any realistic timeseries has some trend, some seasonality and some random behaviour. This can be visualized and analyzed by performing the seasonal decomposition of the timeseries data. 
+
+<h1> <strong>Time Series Modelling Using FBprophet </strong> </h1>
+Facebook has done atleast one good thing - Creation of FBprophet for time series modelling. According to their [website](https://github.com/facebook/prophet){:target="_blank"},
+
+<em> "Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well."</em>
+
+This requires creation of a dataframe that contains the target variable in column <em>y</em> and time index in column <em>ds</em>. Since, we are forecasting the demand of the drug, we use QUANTITY column from our database. This can be done by following piece of function in python and SQL.
+
+{% highlight python %}
+
+def load_drug(drug):
+    sql_string = '''SELECT sum(quantity),period FROM "Casptone_Tableau" WHERE TRANBNFCODE = '''+drug+ 'group by period '
+    df = pd.read_sql(sql_string,engine)
+    df['dt'] = pd.to_datetime(df.period, format = '%Y%m',errors = 'coerce')
+    ds=df['dt']                  # Column for datestamp in Prophet model
+    y = df['sum']                # Column for timeseries in prohet model
+    data_dict = {'ds':ds,'y':y}
+    ts = pd.DataFrame(data_dict)
+    ts.reset_index(inplace =True,drop =True)
+    return(ts)
+{% endhighlight %}
+
+Once the dataframe is brought in correct format, the FBprophet can be used for forecasting. In order to test its accuracy, it is first split into test-train sets. Since there is an yearly seasonality in the data, we train the model on the data till december 2017 and test the predictions of Januray 2018 to deceember 2018 data. This can be conviniently wrapped in a function below. The standard forecast period is taken as 12 months for forecasting into the 12 months of 2019. The function returns the model as well as the forecasted values and plots the model and original values for visual inspection.
+
+{% highlight python %}
+  def prophetmodel(ts,forecast_period=12):
+      # Train Test Split 
+      train = ts[:-12]   # leave out last twelve points for testing 
+      model = Prophet()
+      model.fit(train)
+      future = model.make_future_dataframe(periods=forecast_period,freq='M') 
+      forecast = model.predict(future)
+      model.plot(forecast)
+      plt.plot(ts['ds'],ts['y'])
+      plt.plot(forecast['ds'],forecast['yhat'])
+      plt.show()
+      return(model,forecast)
+{% endhighlight %}
+
+Now, is the time to call these functions to create a forecast for our chosen drugs.
+{% highlight python %}
+    # Model Metformin
+    metformin = "'0601022B0AAABAB'"
+    ts = load_drug(metformin) 
+    model,forecast = prophetmodel(ts,months)
+    # Model for Insulin Humulin  
+    hum_pen = "'0601012D0BBAVBZ'"
+    ts = load_drug(hum_pen) 
+    model,forecast = prophetmodel(ts,months)
+    # Model Insulin Lantus SoloStar
+    lan_pen = "'0601012V0BBAEAD'"
+    ts = load_drug(lan_pen) 
+    model,forecast = prophetmodel(ts,months)
+    # Model Insulin Humulin M3_100u/ml 3ml Cartridge 
+    hum_cart = "'0601012V0AAAAAA'"
+    ts = load_drug(hum_cart) 
+    model,forecast = prophetmodel(ts,months)
+{% endhighlight %}
+
+The results are shown in figure below.
+![Forecast](/assets/Forecast.png)
+
+
+
+
+
+
+The entire project is hosted on this [github repository][UK-Drug]. 
+
+[UK-Drug]: https://github.com/RajasKhokle/DS-Drug-Demand-Forecasting
+
