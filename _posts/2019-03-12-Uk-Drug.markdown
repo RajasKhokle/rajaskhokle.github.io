@@ -98,30 +98,18 @@ Further, there are two kinds of insulins - Humulin or human like and Lantus (a.k
   </ul>
   Essentially, this kind of demand forecasting affects the entire organization in one or other way.
 
-<h1> <strong>Exploratory Data Analysis </strong> </h1>
-Now, let us consider the total drug demand in the entire UK for the drugs under consideration.
+<h1> <strong>Exploratory Data Analysis - Seasonality Decomposition</strong> </h1>
+ 
+Now, let us consider the total drug demand in the entire UK for the drugs under consideration.Any realistic timeseries has some trend, some seasonality and some random behaviour. This can be visualized and analyzed by performing the seasonal decomposition of the timeseries data.
 
 # Metformin
-The graph below shows the seasonality decompistion of the time series data of metformin. The data is decomposed into trend, seasonality and residual. The demand for metformin has been continuously increasing since 2010, however, in last two years, it is seen to be saturating. Further. There is 5 % seasonal and 5% random variation over the trend. When we look at the seasonality closely, it can be inferred that people tend to buy 3 months of stock at a time. Also, the demand spikes in the end of november. This may be because of the holiday season in December.
-
+The graph below shows the seasonality decompostion of the time series data of metformin. The data is decomposed into trend, seasonality and residual. The demand for metformin has been continuously increasing since 2010, however, in last two years, it is seen to be saturating. Further. There is 5 % seasonal and 5% random variation over the trend. When we look at the seasonality closely, it can be inferred that people tend to buy 3 months of stock at a time. Also, the demand spikes in the end of november. This may be because of the holiday season in December.
+![Metformin](/assets/Metformin.png)
 # Insulin Humulin and Lantus
 
 A similar decomposition is done for Insulin Humulin and Insulin Lantus as shown figure below.
-![Insulin][/assets/Insulin.png]. It can be clearly senn that the Humulin use has been increasing steadily over a last decade while the use of Lantus increased rapidly till 2013 and then plateaued and now shows a negative trend.
-The use of Lantus is almost 2.5 times to that of Humulin.
+![Insulin][/assets/insulin.png]. It can be clearly seen that the Humulin use has been increasing steadily over a last decade while the use of Lantus increased rapidly till 2013 and then plateaued and now shows a negative trend. Also, the use of Lantus is almost 2.5 times to that of Humulin.
 
-
-# Insulin Lantus
-
-# Humulin Refill Cartridges
-![Metformin](/assets/Metformin.png)
-
-
-
-
-
-<h1> <strong>Data Modelling - Seasonality Decomposition </strong> </h1>
-Any realistic timeseries has some trend, some seasonality and some random behaviour. This can be visualized and analyzed by performing the seasonal decomposition of the timeseries data. 
 
 <h1> <strong>Time Series Modelling Using FBprophet </strong> </h1>
 Facebook has done atleast one good thing - Creation of FBprophet for time series modelling. According to their [website](https://github.com/facebook/prophet){:target="_blank"},
