@@ -30,6 +30,17 @@ Attention to the details, ability to organise information, strong analytical and
     <li><strong>A new fractal geometry that makes devices smaller:</strong> I invented a new geometry - Christened M-Segment Quadratic Fractal - It can miniaturize the communication devices by as much as 48%. But that is not the main feature. The main feature is that it is a family of curves that can provide a designer a flexibility of choosing between the complexity, miniaturization and performance. </li>
 </ul>
 
+# Eductaion
+
+<ul>
+    <li> <strong> Doctor of Philosophy </strong>
+        Engineering, Macquarie University </li>
+    <li><strong>Master of Technology</strong>
+        Defence Institute of advanced Technology</li>
+    <li><strong>Bachelor of Engineering</strong>
+        Electronics and Telecommunication</li>
+    
+</ul>
 
 
 
