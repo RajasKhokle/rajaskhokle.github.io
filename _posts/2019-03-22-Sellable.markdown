@@ -11,7 +11,8 @@ Find the built-up area for a real estate company using machine vision in python.
 For building a good Automated Valuation Models, it is necessary to know the actual built up area of the property and not only lot size. While this information is readily available with the council, it requires $250 per property. This is quite expensive and for a dataset with 88 k properties, this amounts to $20 Million. Therefore, the aim of this project is to use Google Maps and Machine Vision to calculate the built-up area as accurately as possible. For cross-validation of the accuracy of the algorithm, lot size can be calculated using the same algorithm and verified from the available data.
 
 # Design Solution
-### Getting the Image using Google Map API
+
+#### Getting the Image using Google Map API
 
 The image of the house location can be obtained by using Static Google Map API. The base URL is
 https://maps.googleapis.com/maps/api/staticmap? To this base URL, additional search parameters can
@@ -34,7 +35,7 @@ The size parameter is set as 400 x 400. Maptype parameter is defined as ‘roadm
 Requests package from Python is used to query the final URL and the image received in response is
 accessed using content method and stored in a ‘png’ file format.
 
-### Image segmentation and labeling
+#### Image segmentation and labeling
 
 After loading the file, it is converted to the grayscale image using cvtColor()function from OpenCV2
 library. An example image for the address 16, Fromelles Avenue, NSW is shown in Fig. 1a. Then a mask
@@ -62,7 +63,5 @@ The requirement for this project is to predict the built-up area using google im
 
 
 
-The entire project is hosted on this [github repository][UK-Drug]. 
 
-[UK-Drug]: https://github.com/RajasKhokle/DS-Drug-Demand-Forecasting
 
