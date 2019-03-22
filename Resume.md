@@ -36,10 +36,10 @@ Attention to the details, ability to organise information, strong analytical and
     <li> <strong> Doctor of Philosophy </strong>
         Engineering, Macquarie University </li>
     <li><strong>Master of Technology</strong>
-        Defence Institute of advanced Technology</li>
+       Laser and Electro-optics, Defence Institute of advanced Technology</li>
     <li><strong>Bachelor of Engineering</strong>
         Electronics and Telecommunication</li>
-    
+
 </ul>
 
 

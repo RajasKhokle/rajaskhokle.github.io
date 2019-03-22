@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Prediction of the Built up area using Machine Vision"
+date:   2019-03-22 12:19:28 +1100
+categories: DSI -5 Update
+---
+
+# Problem Statement: 
+Find the built-up area for a real estate company using machine vision in python.
+# Requirment: 
+For building a good Automated Valuation Models, it is necessary to know the actual built up area of the property and not only lot size. While this information is readily available with the council, it requires $250 per property. This is quite expensive and for a dataset with 88 k properties, this amounts to $20 Million. Therefore, the aim of this project is to use Google Maps and Machine Vision to calculate the built-up area as accurately as possible. For cross-validation of the accuracy of the algorithm, lot size can be calculated using the same algorithm and verified from the available data.
+
+# Design Solution
+
+ 
+# Insights:
+The requirement for this project is to predict the built-up area using google images. The algorithm is developed using Python and OpenCV2. The actual lot area according to the dataset available is 638sq.mt. The predicted lot area is 618 sq.mt.  The predicted built-up area is 166.2 sq.mt. Considering -3% of error in lot area, the built-up area may be increased by 3% to 171.2 sq.mt. The entire process is automated and can be used for all the 80,000 addresses potentially saving $20 million.
+
+
+
+
+
+The entire project is hosted on this [github repository][UK-Drug]. 
+
+[UK-Drug]: https://github.com/RajasKhokle/DS-Drug-Demand-Forecasting
+

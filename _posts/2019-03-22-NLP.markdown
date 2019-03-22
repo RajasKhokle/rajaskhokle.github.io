@@ -1,0 +1,64 @@
+---
+layout: post
+title:  "Natural Language Processing on Job Ads"
+date:   2019-03-22 12:19:28 +1100
+categories: DSI -5 Update
+---
+# Problem Statement 
+Predict the qualities that are required for a senior and high salaried data scientist.
+# Requirements:
+Scrape the data from online job boards and perform Natural Language Processing whose output should be used by classification algorithms to predict the top salary influencers. 
+
+#Design Solution:
+ 
+The website www.indeed.com is scraped using selenium for different job titles. A simple exploratory data analysis shows that there is a distinct class of high salary earners in data related jobs. To probe further, various NLP techniques like Stop word removal, lemmatization, tokenization, count vectorization, regex and TFIDF are employed to find the bag of words which is then fed to various classification algorithms out of which Random Forest is found to work well. The top 7 features that are found to influence high salary are then extracted with their relative influence percentage.
+
+
+# Insights: 
+If one wants a high salary doing data science, the person should be a good problem solver with excellent communication skills and experience in business processes and machine learning algorithm. Also, taking contract jobs gives more money than permanent roles. 
+
+
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Quality</th>
+    <th class="tg-0lax">Importance</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Problem Solving Skills</td>
+    <td class="tg-0pky">17%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Verbal Communication Skills</td>
+    <td class="tg-0pky">14%</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Experience</td>
+    <td class="tg-0lax">11%</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Business Process</td>
+    <td class="tg-0lax">10%</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Machine Learning</td>
+    <td class="tg-0lax">9%</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Contract based jobs</td>
+    <td class="tg-0lax">8%</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Stakeholder Management<br></td>
+    <td class="tg-0lax">7%</td>
+  </tr>
+</table>
+
+
