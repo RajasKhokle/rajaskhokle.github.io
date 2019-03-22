@@ -11,6 +11,48 @@ Find the built-up area for a real estate company using machine vision in python.
 For building a good Automated Valuation Models, it is necessary to know the actual built up area of the property and not only lot size. While this information is readily available with the council, it requires $250 per property. This is quite expensive and for a dataset with 88 k properties, this amounts to $20 Million. Therefore, the aim of this project is to use Google Maps and Machine Vision to calculate the built-up area as accurately as possible. For cross-validation of the accuracy of the algorithm, lot size can be calculated using the same algorithm and verified from the available data.
 
 # Design Solution
+### Getting the Image using Google Map API
+
+The image of the house location can be obtained by using Static Google Map API. The base URL is
+https://maps.googleapis.com/maps/api/staticmap? To this base URL, additional search parameters can
+be passed to query the correct map with desired zoom level and size. It should be noted that to access
+the API, it is required to create/use a google API key using Google Cloud Platform Console. IN GCP Console,
+create a new project and select static map product and setup billing information. The complete
+information can be found at [https://developers.google.com/maps/documentation/embed/get-api-key](https://developers.google.com/maps/documentation/embed/get-api-key).
+The developer guide for accessing Google static map API for extensive reference and help can be found at
+[https://developers.google.com/maps/documentation/maps-static/dev-guide](https://developers.google.com/maps/documentation/maps-static/dev-guide). There are 2 important
+parameters – Location parameter and Map Parameters.
+
+a. Location Parameter: -
+
+The latitude and longitude pair of the house location is used as a center parameter with zoom
+level of 19. It may be adjusted to 20 if required.
+
+b. Map Parameter:
+
+The size parameter is set as 400 x 400. Maptype parameter is defined as ‘roadmap’.
+Requests package from Python is used to query the final URL and the image received in response is
+accessed using content method and stored in a ‘png’ file format.
+
+### Image segmentation and labeling
+
+After loading the file, it is converted to the grayscale image using cvtColor()function from OpenCV2
+library. An example image for the address 16, Fromelles Avenue, NSW is shown in Fig. 1a. Then a mask
+of pixel values ranging from 241 – 248 is created that separates houses from lot sizes. When original image
+is convoluted with mask using inRange() function from OpenCV2 , a binary image is created as shown in
+Fig1b that has 1 for built up area and road while 0 for lot area.
+Once the image segmentation is done, the labeling is done by using connectedComponents() method.
+Then the centroid (200,200) is searched in the list of connected components to find the required house.
+From the identified label, the number of pixels is measured. The pixel to length in meters conversion for
+a Google Map image is done using eq.1
+
+𝑚/𝑝𝑥= 156543.03392 ∗ cos(𝑙𝑎𝑡𝑖𝑡𝑢𝑑𝑒)/𝑧𝑜𝑜𝑚^2 (1)
+
+Then the pixels corresponding to the built up area are converted to 0 to merge it with the corresponding
+lot and inverted for labeling. The resulting image is shown in Fig. 1d. The same procedure for labeling,
+measuring pixels and converting to area is done to extract the lot size.
+![Sellable](/assets/Sellable.png)
+
 
  
 # Insights:

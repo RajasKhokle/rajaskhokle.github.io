@@ -11,8 +11,8 @@ Scrape the data from online job boards and perform Natural Language Processing w
 
 #Design Solution:
  
-The website www.indeed.com is scraped using selenium for different job titles. A simple exploratory data analysis shows that there is a distinct class of high salary earners in data related jobs. To probe further, various NLP techniques like Stop word removal, lemmatization, tokenization, count vectorization, regex and TFIDF are employed to find the bag of words which is then fed to various classification algorithms out of which Random Forest is found to work well. The top 7 features that are found to influence high salary are then extracted with their relative influence percentage.
-
+The website www.indeed.com is scraped using selenium for different job titles. A simple exploratory data analysis  shows that there is a distinct class of high salary earners in data related jobs. To probe further, various NLP techniques like Stop word removal, lemmatization, tokenization, count vectorization, regex and TFIDF are employed to find the bag of words which is then fed to various classification algorithms out of which Random Forest is found to work well. The top 7 features that are found to influence high salary are then extracted with their relative influence percentage.
+![NLP_Salary](/assets/NLP_Salary.png)
 
 # Insights: 
 If one wants a high salary doing data science, the person should be a good problem solver with excellent communication skills and experience in business processes and machine learning algorithm. Also, taking contract jobs gives more money than permanent roles. 
@@ -61,4 +61,4 @@ If one wants a high salary doing data science, the person should be a good probl
   </tr>
 </table>
 
-
+The entire projet is hosted on Github - [here](https://github.com/RajasKhokle/DS-Job-Market-Analysis).
