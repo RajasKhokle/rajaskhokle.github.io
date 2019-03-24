@@ -7,7 +7,7 @@ categories: DSI - s5 Update
 <h1> <strong>The Dataset</strong> </h1>
 The National Health Services in the United Kingdom provides monthly data on the prescriptions given by the individual general practices in the United Kingdom. This dataset is available as csv files by released by month and can be downloaded from [https://digital.nhs.uk/data-and-information/publications/statistical/practice-level-prescribing-data](https://digital.nhs.uk/data-and-information/publications/statistical/practice-level-prescribing-data){:target="_blank"}. 
 
-<h1> <strong>The Dataset</strong> </h1>
+<h1> <strong>The Challenge</strong> </h1>
 It contains the number of prescriptions and quantity of each drug prescribed by an individual practice in UK in the given month. The data is available from October 2010 to December 2018. While there are 3093 different drugs and medical appliances that are used; their strength, dosage and formulation vary considerably from company to company giving a total of 38385 different and unique items in the dataset. There are on an average 10 million records for each month. Thus, for about 100 months, this goes to 1 billion records totaling to 1.4 TB of unpacked space. A good data pipeline is therefore required to handle such a large amount of data and prepare it for consumption by the machine learning models and visualizations. 
 
 <h1> <strong>First Look at data</strong> </h1>
