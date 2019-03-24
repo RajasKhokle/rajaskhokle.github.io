@@ -52,7 +52,7 @@ a Google Map image is done using eq.1
 Then the pixels corresponding to the built up area are converted to 0 to merge it with the corresponding
 lot and inverted for labeling. The resulting image is shown in Fig. 1d. The same procedure for labeling,
 measuring pixels and converting to area is done to extract the lot size.
-![Sellable](/assets/Sellable.png)
+![Sellable](/assets/Sellable.PNG)
 
 
  
