@@ -76,9 +76,9 @@ Further, there are two kinds of insulins - Humulin or human like and Lantus (a.k
 
 <ol>
   <li>Metformin – First level of treatment that lowers the Blood Glucose level by affecting liver functions.</li>
-  <li>Insulin Humulin  </li>
-  <li>Insulin Lantus SoloStar</li>
-  <li>Ins Humulin Cartridge</li>
+  <li>Insulin Humulin - Human Like Insulin.  </li>
+  <li>Insulin Lantus SoloStar - Designer Insulin which is 70 % more expensive</li>
+  <li>Ins Humulin Cartridge - Humulin refillable cartridge.</li>
 </ol>
 <h1> <strong>Problem Formulation and Value Generation</strong> </h1>
   The questions that can be asked now are:
