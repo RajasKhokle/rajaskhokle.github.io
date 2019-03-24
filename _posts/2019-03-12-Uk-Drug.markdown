@@ -2,10 +2,12 @@
 layout: post
 title:  "Scalable and Automated Drug Demand Forecasting"
 date:   2019-03-12 12:19:28 +1100
-categories: DSI -5 Update
+categories: DSI - s5 Update
 ---
+<h1> <strong>The Dataset</strong> </h1>
 The National Health Services in the United Kingdom provides monthly data on the prescriptions given by the individual general practices in the United Kingdom. This dataset is available as csv files by released by month and can be downloaded from [https://digital.nhs.uk/data-and-information/publications/statistical/practice-level-prescribing-data](https://digital.nhs.uk/data-and-information/publications/statistical/practice-level-prescribing-data){:target="_blank"}. 
 
+<h1> <strong>The Dataset</strong> </h1>
 It contains the number of prescriptions and quantity of each drug prescribed by an individual practice in UK in the given month. The data is available from October 2010 to December 2018. While there are 3093 different drugs and medical appliances that are used; their strength, dosage and formulation vary considerably from company to company giving a total of 38385 different and unique items in the dataset. There are on an average 10 million records for each month. Thus, for about 100 months, this goes to 1 billion records totaling to 1.4 TB of unpacked space. A good data pipeline is therefore required to handle such a large amount of data and prepare it for consumption by the machine learning models and visualizations. 
 
 <h1> <strong>First Look at data</strong> </h1>
@@ -97,7 +99,10 @@ Further, there are two kinds of insulins - Humulin or human like and Lantus (a.k
     
   </ul>
   Essentially, this kind of demand forecasting affects the entire organization in one or other way.
+<h1><strong>Visualization in Tableau</strong></h1>
+The entire dataset can be interactively visualized in Tableau. First, we connect to the Postgres Database (requires paid version of Tableau Desktop) and import two tables - Drugs and Address tables. Then we join the two tables so that the addresses for every GP can be accessed. Then, an interactive dashboard can be created to explore the distribuion of drug demand in UK on map as shown in figure below.
 
+![Drug_Tableau](/assets/Drug_Tableau.png)
 <h1> <strong>Exploratory Data Analysis - Seasonality Decomposition</strong> </h1>
  
 Now, let us consider the total drug demand in the entire UK for the drugs under consideration.Any realistic timeseries has some trend, some seasonality and some random behaviour. This can be visualized and analyzed by performing the seasonal decomposition of the timeseries data.
@@ -171,6 +176,18 @@ Now, is the time to call these functions to create a forecast for our chosen dru
 
 The results are shown in figure below.It can be seen that the model correctly forecasts the quarterly increase in the demand.
 ![Forecast](/assets/Forecast.png)
+
+<h1> <strong>The Insights</strong> </h1>
+
+<ul>
+  <li>All the diabetes related drugs show seasonality of 3 months in general. Also, the sales of drugs increase in the month of November and decresae in December. This may be due to holiday season.</li>
+  <li>Humulin use has been increasing steadily over a last decade.</li>
+  <li>By the third quarter of 2019, the total demand for Humulin pens will cross 425,000 units.</li>
+  <li>Use of Lantus increased rapidly till 2013 and then plateaued and now shows a negative trend.</li>
+  <li>The use of Lantus is almost 2.5 times to that of Humulin.</li>
+  <li>The sale for refill cartridges for Humulin has been steadily falling which means people are preferring single use. Maybe a separate single use packaging for Humulin can reduce the cost of production. An enginerring team should be consulted ASAP. </li>
+
+</ul>
 
 
 
