@@ -9,10 +9,16 @@ Predict the qualities that are required for a senior and high salaried data scie
 # Requirements:
 Scrape the data from online job boards and perform Natural Language Processing whose output should be used by classification algorithms to predict the top salary influencers. 
 
-#Design Solution:
+# Design Solution:
  
 The website www.indeed.com is scraped using selenium for different job titles. A simple exploratory data analysis  shows that there is a distinct class of high salary earners in data related jobs. To probe further, various NLP techniques like Stop word removal, lemmatization, tokenization, count vectorization, regex and TFIDF are employed to find the bag of words which is then fed to various classification algorithms out of which Random Forest is found to work well. The top 7 features that are found to influence high salary are then extracted with their relative influence percentage.
 ![NLP_Salary](/assets/NLP_Salary.png)
+
+The entire project is split into 3 tasks - Scraping, Cleaning and Modelling. Scraping is done using requests, selenium and beautiful soup. The strategy is to query the indeed search page with a list of job locations and job titles (in all possible combinations). Job locations were - Sydney, Melbourne, Brisbane, Adelaide and Perth and Job Titles were 'Data Scientist', 'Data Analyst', 'Data Engineer', 'Business Analyst'. From each search page, individual ad is extracted which had an URL for complete Job description. All these URLS and corresponding Job Ads were saved in an intermediate data frame. Then these URLs were scraped further for complete job description, Job title and Salary and saved as new CSV file. 
+
+This file is loaded in a new python script for cleaning the data. Then the entries where job descriptions matched were labeled as duplicates and as such removed from analysis. Also, the entries without the salary information were removed. Then the salaries which were in per day, per week and per month format were converted to per year format by assuming 40 hours a week and 50 weeks per year. In cases where range of salaries were given, it was converted to the average of lowest and highest salary. Finally the cleaned dataframe is stored as another csv file.
+
+In final, modelling, the salaries above the mean salary are labeled as high salaries and rest as low salaries. Since the data is not highly skwed, this gava quite balanced distribution. Then, text from each job description is extracted and after performing NLP algorithms like TFIDF, classification algorithms like logistic classification, KNN, SVM, Decision Tree, Naive Bayes, and Random forest were applied with appropriate hyperparameters to get good clasification accuracy. A cross validation is performed and the variance is accuracy is also noted. It is seen that SVM and Random Forest give lowest variance.
 
 # Insights: 
 If one wants a high salary doing data science, the person should be a good problem solver with excellent communication skills and experience in business processes and machine learning algorithm. Also, taking contract jobs gives more money than permanent roles. 
