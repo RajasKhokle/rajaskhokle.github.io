@@ -45,7 +45,7 @@ There are 10 column which are described below.
 
 There are 21 groups of drugs and medical appliances as outlined by British Natural Formulary (BNF). They can be stored in 21 different tables. This preserves all the data; however, it makes querying the database faster since it need not scan through even the index of 1 billion records. An index is then created on BNFCODE. 
 
-The entire data flow is shown in the  data pipeline below.
+The entire data flow is shown in the data pipeline below.
 
 ![Data Pipeline](/assets/Data_Pipeline.png)
 
@@ -76,7 +76,7 @@ Further, there are two kinds of insulins - Humulin or human like and Lantus (a.k
 
 <ol>
   <li>Metformin – First level of treatment that lowers the Blood Glucose level by affecting liver functions.</li>
-  <li>Insulin Humulin - Human Like Insulin.  </li>
+  <li>Insulin Humulin - Human Like Insulin cheaper.  </li>
   <li>Insulin Lantus SoloStar - Designer Insulin which is 70 % more expensive</li>
   <li>Ins Humulin Cartridge - Humulin refillable cartridge.</li>
 </ol>
