@@ -26,7 +26,44 @@ Currently, I am doing some freelance and volunteer projects around data analytic
 
 <strong>Interviewer:</strong> So, what are these qualities that you are talking about?
 
-<strong>Me</strong>:  First and foremost is passion. To work incessantly on a problem which was never solved before and rife with uncertainties and failures and which requires time bound solution. And doing all this when you are paid literally nothing requires intense passion for your job and work. I therefore developed an intense grit and resilience during this period. This also demands for utilizing and managing your time very efficiently. Another thing that PhD taught me is asking correct questions. What you don’t know, you don’t know. Asking correct questions then enables you to gather correct and useful data and formulate the strategy correctly. Further, my supervisor is a very busy man, this made me very independent in thinking critically and made me a solution-driven person. A very strict peer review is akin to client satisfaction in business. Getting an article published in top level journals means going through tough scrutiny and making sure you exceed the expectations by delivering over and above the comments and questions of the reviewer and communicating clearly. I also reviewed other’s work which gave me experience on reading something new, comprehending that and then asking critical questions that matter most. I believe that these experiences though not tangible immediately, are quite important to be successful in any role.  
+<strong>Me</strong>:  First and foremost is passion. To work incessantly on a problem which was never solved before and rife with uncertainties and failures and which requires time bound solution. And doing all this when you are paid literally nothing requires intense passion for your job and work. I therefore developed an intense grit and resilience during this period. This also demands for utilizing and managing your time very efficiently. Another thing that PhD taught me is asking correct questions. What you don’t know, you don’t know. Asking correct questions then enables you to gather correct and useful data and formulate the strategy correctly. Further, my supervisor is a very busy man, this made me very independent in thinking critically and made me a solution-driven person. A very strict peer review is akin to client satisfaction in business. Getting an article published in top level journals means going through tough scrutiny and making sure you exceed the expectations by delivering over and above the comments and questions of the reviewer and communicating clearly. I also reviewed other’s work which gave me experience on reading something new, comprehending that and then asking critical questions that matter most. I believe that these experiences though not tangible immediately, are quite important to be successful in any role.
+
+<strong>Interviewer:</strong> Those are certainly good qualities, however can you tell me about the work which you have done which had tangible results, apart from your PhD results?
+
+<strong>Me:</strong> Certainly, I would like to tell you in brief about 2 really good projects that I have recently done which have very tangible results.
+
+<strong>Machine Vision:</strong>
+Sellable.com is a real estate startup company. They wanted to develop an automated valuation model to predict the house price for their database of 88,000 houses. They had lot size of their properties but not the actual built up area. They could get this information from council, however for each house, this information costs $250. For 80,000 properties, it would cost $20M. I have used Google Maps API to capture the images of these homes and developed a machine vision algorithm in python and opencv2 to determine the actual built-up area with 3% accuracy. This can potentially save $20 Million for Sellable.com.
+ 
+<strong>Time Series Modelling</strong>
+National health services in UK had published the prescription data (over 1.5TB unpacked) for over 3800 different drugs and appliances over 9000 GPs for last 9 years. First, I aggregated the data from all different files into a single Postgresql database which can be consumed by Python machine learning models, Tableau Visualization tools and Web frontends. Then I developed automated Time series forecasting models and Created Tableau Dashboard for map and time series visualisations filtered by region and drug. This can help any pharmaceutical company operating in UK at all levels of its operation as shown in table below
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-s268{text-align:left}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-s268"><br>&nbsp;&nbsp;Stakeholder<br>&nbsp;&nbsp;</th>
+    <th class="tg-s268"><br>&nbsp;&nbsp;Requirement<br>&nbsp;&nbsp;</th>
+  </tr>
+  <tr>
+    <td class="tg-s268"><br>&nbsp;&nbsp;CEO and Shareholders<br>&nbsp;&nbsp;</td>
+    <td class="tg-s268"><br>&nbsp;&nbsp;Which drugs in the portfolio are in high demand and bring more<br>&nbsp;&nbsp;revenue? Which drugs have the potential<br>&nbsp;&nbsp;to grow more?<br>&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-s268"><br>&nbsp;&nbsp;Production, Planning and Inventory Manager<br>&nbsp;&nbsp;</td>
+    <td class="tg-s268"><br>&nbsp;&nbsp;What is the demand for different drugs in the year 2019?<br>&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><br>&nbsp;&nbsp;Head - Supply Chain Management<br>&nbsp;&nbsp;</td>
+    <td class="tg-0lax"><br>&nbsp;&nbsp;What is forecast for drug requirement segmented by geographic area?<br>&nbsp;&nbsp;</td>
+  </tr>
+</table>
+
+You can read a long version [here](https://rajaskhokle.github.io/dsi/-/s5/update/2019/03/12/Uk-Drug.html).
 
 <strong>Interviewer</strong>: What do you want to work on now and what is the way ahead for you?
 
