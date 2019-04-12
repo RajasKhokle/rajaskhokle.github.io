@@ -32,4 +32,4 @@ Currently, I am doing some freelance and volunteer projects around data analytic
 
 <strong>Me</strong>: Going ahead, I would like to continue this path of data science and looking for a permanent role. What really excites me about data science is drawing actionable insights from data that will either optimize the existing process or will enable an entire new solution to yet unsolvable problem. 
  
- An ideal position for me would be the one in which I am working with a cohesive and high performing team where I will expand my skills to include business acumen while delivering on my mathematical modelling and problem-solving capabilities along with my communication and presentation skills.   
+An ideal position for me would be the one in which I am working with a cohesive and high performing team where I will expand my skills to include business acumen while delivering on my mathematical modelling and problem-solving capabilities along with my communication and presentation skills.   
