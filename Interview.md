@@ -1,6 +1,8 @@
+---
 layout: page
 title: Interview
 permalink: /Interview/
+---
 
 Interviewer: Good Morning Dr. Rajas. I would like to know about your profile. Who you are, what have done till now?
 Me: Yes, definitely. I have done my bachelor’s degree in Engineering from 2005-2009. As a capstone project, I worked on an AI and robotics project that involved detecting fire using Image processing and machine vision and then using robot to extinguish that fire. This was my first project on AI. 
